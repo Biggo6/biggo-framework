@@ -2,6 +2,7 @@ biggo-framework
 ===============
 
 PHP Framework For MVC Beginners
+[![Build Status]]
 
 ## Official Documentation
 
