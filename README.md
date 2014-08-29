@@ -3,7 +3,7 @@ biggo-framework
 
 PHP Framework For MVC Beginners
 
-[![Build Status](https://travis-ci.org/Biggo6/biggo-framework.svg)](https://travis-ci.org/Biggo6/biggo-framework)
+
 
 ## Official Documentation
 
