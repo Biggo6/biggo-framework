@@ -30,7 +30,7 @@ $app = array (
 
 	"root_path"          => getcwd(),
 
-	"real_path"          => "http://localhost/mvc/"  
+	"real_path"          => "http://localhost/biggo-framework/"  
 
 
 );
