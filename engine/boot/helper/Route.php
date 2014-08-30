@@ -1,7 +1,6 @@
 <?php
 
 	
-	
 
 class Route {
 	
@@ -21,7 +20,7 @@ class Route {
 			if($server_method == strtoupper($method)){
 				self::add($url);
 			}else{
-				Log::collect("<b>RouteCollection <@routeServerMethod __::__ Route::mismap @></b>");
+				ErrorBag::collect("<b>RouteCollection <@routeServerMethod __::__ Route::mismap @></b>");
 			}	
 					
 		}else{
@@ -54,7 +53,7 @@ class Route {
 				 if($value === $url){
 				 	return explode("/",$url);
 				 }else{
-				 	Log::collect("<b>Error: Route Collection <@routeNotFound __::__ ".$url." @></b>"); 
+				 	ErrorBag::collect("<b>Error: Route Collection <@routeNotFound __::__ ".$url." @></b>"); 
 			     }
 			}		
 		}

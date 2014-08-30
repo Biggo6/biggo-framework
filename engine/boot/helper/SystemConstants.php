@@ -13,3 +13,4 @@ define('DEBUG_STATUS', $app['debug']);
 define('ROOT_PATH', $app['root_path']);
 define('DS', DIRECTORY_SEPARATOR);
 define('ASSET_PATH_IMG', $app['real_path'] . "public/assets/biggo.jpg");
+define('SYS_INIT', ROOT_PATH . DS ."..".DS . "engine" . DS . "boot" .  DS . "helper" . DS . "InitApp.php");

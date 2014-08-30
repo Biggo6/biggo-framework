@@ -1,5 +1,7 @@
 <?php
 
+
+
 class EngineController {
 
 
@@ -13,7 +15,12 @@ class EngineController {
 
 	public function autoModel(){
 		function __autoload($class){
-			require  ROOT_PATH . DS ."..".DS . "app" . DS . "models" . DS . $class .  ".php";
+			$file =  ROOT_PATH . DS ."..".DS . "app" . DS . "models" . DS . $class .  ".php";
+			if(file_exists($file)){
+				include_once $file;
+			}else{
+				include SYS_INIT;
+			}
 		}
 	}
 
@@ -21,7 +28,7 @@ class EngineController {
 	public function lib($lib){
 		$lb = ROOT_PATH . DS . ".." . DS . "app" . DS ."libs" . DS . $lib .".php";
 		if(!file_exists($lb)){
-			Log::collect("<b>LibError : fail to load library <i style='color: red'>". $lib."</i> <@class __::__ missingLib @></b>"); 
+			ErrorBag::collect("<b>LibError : fail to load library <i style='color: red'>". $lib."</i> <@class __::__ missingLib @></b>"); 
 		}else{
 			include $lb;
 			return new $lib();
@@ -43,22 +50,34 @@ class EngineController {
 			if($eM == "EngineModel"){
 				return new $model();
 			}else{
-				Log::collect("<b>ParentModel: please extends EngineModel on model: ___model__<i style='color: red'>". $model."</i> <@class __::__ EngineModel @></b>"); 
+				ErrorBag::collect("<b>ParentModel: please extends EngineModel on model: ___model__<i style='color: red'>". $model."</i> <@class __::__ EngineModel @></b>"); 
 			}
 		}else{
-			return Log::collect("<b>ModelError: model is not there <@class __::__ ".$model." @></b>"); 
+			return ErrorBag::collect("<b>ModelError: model is not there <@class __::__ ".$model." @></b>"); 
 		}
 	}
 	
     public function view($fv, $data = array() ) {
-        $view = getcwd() . DS. ".."."/app/views/" . $fv . ".php";
+        $view = getcwd() . DS. "..".DS."app".DS."views". DS . $fv . ".php";
         if(file_exists($view)){
-            if(!empty($data)) 
-            	extract($data);
-			include_once $view;
+
+	            if(!empty($data)) 
+	            	extract($data);
+				include_once $view;
 
         }else{
-            Log::collect("<b>Error: View is not there <@class __::__ ".$view." @></b>"); 
+
+        	$view = getcwd() . DS. "..".DS."app".DS."views". DS . $fv . ".ebig";
+
+        	if(file_exists($view)){
+
+        		
+
+        	}else{
+        	   ErrorBag::collect("<b>Error: View is not there <@class __::__ ".$view." @></b>"); 
+        	}
+
+            
         }
     }
 
